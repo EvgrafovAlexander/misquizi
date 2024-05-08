@@ -17,4 +17,10 @@ class DBSettings(BaseSettings):
     user: str = Field(default="postgres", alias="DB_USER")
     password: str = Field(default="postgres", alias="DB_PASSWORD")
 
+    @property
+    def url(self):
+        return (
+            f"postgresql+asyncpg://{self.user}:{self.password}@{self.host}:{str(self.port)}/{self.name}"
+        )
+
     model_config = SettingsConfigDict(env_file=".env", extra='ignore')
