@@ -13,7 +13,9 @@ from src.database import CustomBase
 class QuizGroup(CustomBase):
     __tablename__ = "quiz_group"
 
-    id = Column(UUID(as_uuid=True), primary_key=True, default=uuid.uuid4, doc="Group id")
+    id = Column(
+        UUID(as_uuid=True), primary_key=True, default=uuid.uuid4, doc="Group id"
+    )
     name = Column(String(100), nullable=False, unique=True, doc="Group name")
     description = Column(String, doc="Group description")
     is_active = Column(Boolean, default=False, index=True, doc="is group active")
