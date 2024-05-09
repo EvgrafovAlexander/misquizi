@@ -5,16 +5,16 @@ from sqlalchemy.ext.asyncio import AsyncSession
 # project
 from src.database import get_db_session
 from src.quiz.controllers.add_quiz_group import AddQuizGroupController
-from src.quiz.schemas import QuizGroupAdding
+from src.quiz.schemas import BaseResponse, QuizGroupAdding
 
 
 router = APIRouter(prefix="/quiz", tags=["quiz"])
 
 
-@router.post("/group/add")
+@router.post("/group/add", response_model=BaseResponse)
 async def add_quiz_group(
-        group: QuizGroupAdding,
-        session: AsyncSession = Depends(get_db_session),
+    group: QuizGroupAdding,
+    session: AsyncSession = Depends(get_db_session),
 ):
     """Adding a new group of quizzes"""
     return await AddQuizGroupController(group, session)()
