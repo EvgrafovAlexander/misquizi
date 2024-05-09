@@ -5,13 +5,13 @@ from http import HTTPStatus
 from fastapi import HTTPException
 
 # project
-from src.quiz.models import QuizGroup
+from src.quiz.models import QuizGroups
 from src.quiz.schemas import QuizGroupAdding
 from src.utils.repository import BaseRepository
 
 
-class QuizGroupRepository(BaseRepository):
-    model = QuizGroup
+class QuizGroupsRepository(BaseRepository):
+    model = QuizGroups
 
     async def add_quiz_group(self, quiz_group: QuizGroupAdding):
         try:
@@ -20,4 +20,7 @@ class QuizGroupRepository(BaseRepository):
             await self.session.commit()
         except Exception as e:
             await self.session.rollback()
-            raise HTTPException(status_code=HTTPStatus.INTERNAL_SERVER_ERROR, detail=f"DB Add quiz group error: {e}")
+            raise HTTPException(
+                status_code=HTTPStatus.INTERNAL_SERVER_ERROR,
+                detail=f"DB Add quiz group error: {e}",
+            )

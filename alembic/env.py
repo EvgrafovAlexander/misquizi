@@ -11,7 +11,7 @@ from src.config import db_config
 from src.database import Base
 
 
-from src.quiz.models import QuizGroup  # noqa
+from src.quiz.models import QuizGroups  # noqa
 
 
 # this is the Alembic Config object, which provides

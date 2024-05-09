@@ -10,8 +10,8 @@ from sqlalchemy.dialects.postgresql import UUID
 from src.database import CustomBase
 
 
-class QuizGroup(CustomBase):
-    __tablename__ = "quiz_group"
+class QuizGroups(CustomBase):
+    __tablename__ = "quiz_groups"
 
     id = Column(
         UUID(as_uuid=True), primary_key=True, default=uuid.uuid4, doc="Group id"

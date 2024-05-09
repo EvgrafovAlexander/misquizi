@@ -2,7 +2,7 @@
 from sqlalchemy.ext.asyncio import AsyncSession
 
 # project
-from src.quiz.repositories.quiz_group import QuizGroupRepository
+from src.quiz.repositories.quiz_groups import QuizGroupsRepository
 from src.quiz.schemas import QuizGroupAdding
 from src.utils.controller import AsyncController
 
@@ -13,4 +13,6 @@ class AddQuizGroupController(AsyncController):
         self.session = session
 
     async def __call__(self, *args, **kwargs):
-        return await QuizGroupRepository(session=self.session).add_quiz_group(self.quiz_group)
+        return await QuizGroupsRepository(session=self.session).add_quiz_group(
+            self.quiz_group
+        )
