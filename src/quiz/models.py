@@ -15,6 +15,6 @@ class QuizGroup(CustomBase):
 
     id = Column(UUID(as_uuid=True), primary_key=True, default=uuid.uuid4, doc="Group id")
     name = Column(String(100), nullable=False, doc="Group name")
-    is_active = Column(Boolean, default=False, doc="is group active")
+    is_active = Column(Boolean, default=False, index=True, doc="is group active")
     created_at = Column(DateTime, default=datetime.now)
     updated_at = Column(DateTime, default=datetime.now, onupdate=datetime.now)
