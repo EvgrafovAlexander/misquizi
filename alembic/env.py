@@ -11,6 +11,9 @@ from src.config import db_config
 from src.database import Base
 
 
+from src.quiz.models import QuizGroup
+
+
 # this is the Alembic Config object, which provides
 # access to the values within the .ini file in use.
 config = context.config

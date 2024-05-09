@@ -28,3 +28,8 @@ async def get_db_session() -> AsyncGenerator[AsyncSession, None]:
 
 # Model base class
 Base = declarative_base()
+
+
+class CustomBase(Base):
+    __abstract__ = True
+    __table_args__ = {"extend_existing": True}
