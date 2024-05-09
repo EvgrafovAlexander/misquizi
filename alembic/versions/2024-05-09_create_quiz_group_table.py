@@ -1,8 +1,8 @@
 """create quiz_group table
 
-Revision ID: 1f09bdd52e66
+Revision ID: 670a552c249c
 Revises: 
-Create Date: 2024-05-09 22:18:56.422083
+Create Date: 2024-05-09 23:19:37.286026
 
 """
 from typing import Sequence, Union
@@ -12,7 +12,7 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision: str = '1f09bdd52e66'
+revision: str = '670a552c249c'
 down_revision: Union[str, None] = None
 branch_labels: Union[str, Sequence[str], None] = None
 depends_on: Union[str, Sequence[str], None] = None
@@ -27,7 +27,8 @@ def upgrade() -> None:
     sa.Column('is_active', sa.Boolean(), nullable=True),
     sa.Column('created_at', sa.DateTime(), nullable=True),
     sa.Column('updated_at', sa.DateTime(), nullable=True),
-    sa.PrimaryKeyConstraint('id')
+    sa.PrimaryKeyConstraint('id'),
+    sa.UniqueConstraint('name')
     )
     op.create_index(op.f('ix_quiz_group_is_active'), 'quiz_group', ['is_active'], unique=False)
     # ### end Alembic commands ###
