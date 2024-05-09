@@ -8,6 +8,7 @@ from sqlalchemy.ext.asyncio import (
     async_sessionmaker,
     create_async_engine,
 )
+from sqlalchemy.ext.declarative import declarative_base
 
 # project
 from src.config import db_config
@@ -23,3 +24,7 @@ async def get_db_session() -> AsyncGenerator[AsyncSession, None]:
         except exc.SQLAlchemyError as e:
             await session.rollback()
             raise
+
+
+# Model base class
+Base = declarative_base()
