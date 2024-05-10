@@ -1,4 +1,8 @@
+# stdlib
+from http import HTTPStatus
+
 # thirdparty
+from fastapi import HTTPException
 from sqlalchemy.ext.asyncio import AsyncSession
 
 # project
@@ -13,5 +17,13 @@ class AddQuizGroupController(AsyncController):
         self.session = session
 
     async def __call__(self, *args, **kwargs) -> BaseResponse:
-        await QuizGroupsRepository(session=self.session).add_quiz_group(self.quiz_group)
-        return BaseResponse()
+        try:
+            await QuizGroupsRepository(session=self.session).add_quiz_group(
+                self.quiz_group
+            )
+            return BaseResponse()
+        except Exception as e:
+            raise HTTPException(
+                status_code=HTTPStatus.BAD_REQUEST,
+                detail=f"AddQuizGroupController Error, detail: {e}",
+            )

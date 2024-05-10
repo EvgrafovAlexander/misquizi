@@ -2,7 +2,6 @@
 from collections.abc import AsyncGenerator
 
 # thirdparty
-from sqlalchemy import exc
 from sqlalchemy.ext.asyncio import (
     AsyncSession,
     async_sessionmaker,
@@ -14,20 +13,16 @@ from sqlalchemy.ext.declarative import declarative_base
 from src.config import db_config
 
 
-async def get_db_session() -> AsyncGenerator[AsyncSession, None]:
-    engine = create_async_engine(db_config.url)
-    factory = async_sessionmaker(engine)
-    async with factory() as session:
-        try:
-            yield session
-            await session.commit()
-        except exc.SQLAlchemyError:
-            await session.rollback()
-            raise
-
+engine = create_async_engine(db_config.url)
+async_session = async_sessionmaker(engine)
 
 # Model base class
 Base = declarative_base()
+
+
+async def get_db_session() -> AsyncGenerator[AsyncSession, None]:
+    async with async_session() as session:
+        yield session
 
 
 class CustomBase(Base):
