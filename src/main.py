@@ -2,12 +2,12 @@
 import uvicorn
 
 # project
-from logger import logger_initializing
+from logger import initialize_logger
 from src import config
 from src.app_initializer import get_fastapi_application
 
 
-logger_initializing()
+initialize_logger()
 app = get_fastapi_application()
 
 

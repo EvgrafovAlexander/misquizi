@@ -5,7 +5,7 @@ import os
 from loguru import logger
 
 
-def logger_initializing():
+def initialize_logger():
     log_directory = "logs"
     if not os.path.exists(log_directory):
         os.makedirs(log_directory)
