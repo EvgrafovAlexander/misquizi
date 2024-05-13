@@ -7,7 +7,7 @@ from sqlalchemy.ext.asyncio import AsyncSession
 
 # project
 from logger import logger
-from src.quiz.repositories.quiz_groups import QuizGroupRepository
+from src.quiz.repositories.quiz_group import QuizGroupRepository
 from src.quiz.schemas import QuizGroupAdding, BaseResponse
 from src.utils.controller import AsyncController
 
