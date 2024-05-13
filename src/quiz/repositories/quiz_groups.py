@@ -1,11 +1,11 @@
 # project
-from src.quiz.models import QuizGroups
+from src.quiz.models import QuizGroup
 from src.quiz.schemas import QuizGroupAdding
 from src.utils.repository import BaseRepository
 
 
-class QuizGroupsRepository(BaseRepository):
-    model = QuizGroups
+class QuizGroupRepository(BaseRepository):
+    model = QuizGroup
 
     async def add_quiz_group(self, quiz_group: QuizGroupAdding):
         async with self.session.begin():

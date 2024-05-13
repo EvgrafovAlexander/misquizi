@@ -7,7 +7,7 @@ from sqlalchemy.ext.asyncio import AsyncSession
 
 # project
 from logger import logger
-from src.quiz.repositories.quiz_groups import QuizGroupsRepository
+from src.quiz.repositories.quiz_groups import QuizGroupRepository
 from src.quiz.schemas import QuizGroupAdding, BaseResponse
 from src.utils.controller import AsyncController
 
@@ -20,7 +20,7 @@ class AddQuizGroupController(AsyncController):
     async def __call__(self, *args, **kwargs) -> BaseResponse:
         try:
             logger.info("AddQuizGroupController, quiz_group: %s" % self.quiz_group.name)
-            await QuizGroupsRepository(session=self.session).add_quiz_group(
+            await QuizGroupRepository(session=self.session).add_quiz_group(
                 self.quiz_group
             )
             return BaseResponse()
