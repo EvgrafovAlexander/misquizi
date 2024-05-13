@@ -20,7 +20,7 @@ class QuizAdding(BaseModel):
     description: str | None = Field(title="Quiz description")
 
 
-class BaseResponse(BaseModel):
-    """Base response model"""
+class AddRowResponse(BaseModel):
+    """Add row to database response"""
 
-    detail: str = "Ok"
+    id: UUID = None

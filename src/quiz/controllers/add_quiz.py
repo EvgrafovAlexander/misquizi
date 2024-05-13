@@ -8,7 +8,7 @@ from sqlalchemy.ext.asyncio import AsyncSession
 # project
 from logger import logger
 from src.quiz.repositories.quiz import QuizRepository
-from src.quiz.schemas import QuizAdding, BaseResponse
+from src.quiz.schemas import QuizAdding
 from src.utils.controller import AsyncController
 
 
@@ -17,11 +17,11 @@ class AddQuizController(AsyncController):
         self.quiz = quiz
         self.session = session
 
-    async def __call__(self, *args, **kwargs) -> BaseResponse:
+    async def __call__(self, *args, **kwargs) -> dict:
         try:
             logger.info("AddQuizController, quiz: %s" % self.quiz.name)
-            await QuizRepository(session=self.session).add_quiz(self.quiz)
-            return BaseResponse()
+            id = await QuizRepository(session=self.session).add_quiz(self.quiz)
+            return {"id": id}
         except Exception as e:
             logger.error("AddQuizController Error, detail: %s" % e)
             raise HTTPException(
